@@ -32,7 +32,7 @@ const Start_Test_Btn = document.getElementById('start-btn');
 const Start_Test = document.querySelector('.start-test');
 
 const Restart_Btn = document.getElementById('restart-btn');
-
+const Restart_Container = document.querySelector('.restart');
 
 // Test completed UI Elements
 const Test_Complete_Container = document.querySelector('.test-complete-container');
@@ -79,6 +79,7 @@ function normalizeChar(ch) {
 
 // Loading the test
 let testData = null;
+function loadTestData() {
 fetch('./data.json')
   .then(response => {
     if (!response.ok) {
@@ -91,7 +92,9 @@ fetch('./data.json')
     console.log(data);
     // Use data here
   })
-  .catch(error => console.error('Error fetching data:', error));   
+  .catch(error => console.error('Error fetching data:', error));  
+}
+loadTestData(); 
 
 // Function to start the test
 function StartButtonHandler() {
@@ -102,6 +105,7 @@ function StartButtonHandler() {
     // Hide main content and show test passage
     Start_Test.style.display = 'none';
     Test_Passage.style.display = 'block';
+    Restart_Container.style.display = 'flex';
 
     if (modeValue === 'timed') {
         Mode_Passage.classList.add('disabled-button');
@@ -197,8 +201,9 @@ function typingTestHandler() {
     let typedChars = 0;
     let correctChars = 0;
 
-    // create chart canvas in the controls area (if not present)
-    const controlsEl = document.querySelector('.test-controls');
+    // create chart canvas in the controls area 
+    //This is an Update in future version, currently disabled to focus on core functionality and avoid potential performance issues on lower-end devices. Will re-enable once optimized.
+   /* const controlsEl = document.querySelector('.test-controls');
     let canvas = document.getElementById('wpm-chart');
     if (!canvas && controlsEl) {
         canvas = document.createElement('canvas');
@@ -211,7 +216,7 @@ function typingTestHandler() {
         controlsEl.appendChild(canvas);
     }
     const ctx = canvas ? canvas.getContext('2d') : null;
-
+*/
     function computeAndUpdateStats() {
         const now = startTimestamp ? Date.now() : null;
         const minutesElapsed = startTimestamp ? Math.max((now - startTimestamp) / 60000, 1/60) : 0; // avoid div by zero
@@ -230,10 +235,18 @@ function typingTestHandler() {
         }
         document.removeEventListener('keydown', handleKeydown);
         const stats = computeAndUpdateStats();
-        Final_Wpm.textContent = stats.wpm;
-        Final_Accuracy.textContent = stats.accuracy + '%';
+        Final_Wpm.textContent = Math.round(stats.wpm);
+        Final_Accuracy.textContent = Math.round(stats.accuracy) + '%';
+        Test_Time.textContent = 'Done';
         Final_Characters.textContent = `${correctChars}/${spans.length}`;
         Test_Complete_Container.style.display = 'flex';
+        Restart_Container.style.display = 'none';
+        Main_Content.style.display = 'none';
+         // update personal best if needed
+         if (stats.wpm > personalBestValue) {
+            personalBestValue = stats.wpm;
+            Personal_Best.textContent = 'Personal Best: ' + Math.round(personalBestValue) + ' WPM';
+        }
     }
 
     function decrementCounter() {
@@ -337,8 +350,8 @@ function typingTestHandler() {
             if (currentCharIndex < spans.length) spans[currentCharIndex].classList.add('active');
             computeAndUpdateStats();
 
-            // if finished the passage in passage mode, end test
-            if (modeValue === 'passage' && currentCharIndex >= spans.length) {
+            // if finished the passage (either mode), end test
+            if (currentCharIndex >= spans.length) {
                 endTest();
             }
         }
@@ -347,5 +360,42 @@ function typingTestHandler() {
     document.addEventListener('keydown', handleKeydown);
 
 }
+
+function resetTest() {
+    // Reset all values and UI elements to initial state
+    testWpmValue = 0;
+    testAccuracyValue = 0;
+    testTimeValue = 60;
+    finalWpmValue = 0;
+    finalAccuracyValue = 0;
+    finalCharactersValue = 0;
+    finalWrongCharactersValue = 0; 
+    Test_Wpm.textContent = '0';
+    Test_Accuracy.textContent = '0%';
+    Test_Time.textContent = '60';
+    Test_Passage.style.display = '';
+    Start_Test.style.display = 'flex';
+    Test_Complete_Container.style.display = 'none';
+    // re-enable difficulty and mode buttons
+    Difficulty_Easy.classList.remove('disabled-button');
+    Difficulty_Medium.classList.remove('disabled-button');
+    Difficulty_Hard.classList.remove('disabled-button');
+    Mode_Timed.classList.remove('disabled-button');
+    Mode_Passage.classList.remove('disabled-button');
+    // re-attach event listeners for difficulty and mode buttons
+    Difficulty_Easy.addEventListener('click', () => chooseDifficulty('easy'));
+    Difficulty_Medium.addEventListener('click', () => chooseDifficulty('medium'));
+    Difficulty_Hard.addEventListener('click', () => chooseDifficulty('hard'));
+    Mode_Timed.addEventListener('click', () => chooseMode('timed'));
+    Mode_Passage.addEventListener('click', () => chooseMode('passage'));
+    // clear passage text
+    Main_Content.style.display = 'flex';
+    Test_Passage_Text.textContent = 'Click the text and start typing to begin the test. You can also select a difficulty level and mode before starting.';
+    Restart_Container.style.display = 'none';
+    
+}
+
+Restart_Btn.addEventListener('click', resetTest);
+Go_Again_Btn.addEventListener('click', resetTest);
 
 
