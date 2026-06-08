@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
+  
+  <title>Frontend Mentor | Typing Speed Test</title>
+
+
+</head>
+<body>
+  <div class="test-container">
+    <div class="header">
+      <div>
+        <img src="./assets/images/logo-large.svg" alt="Typing Speed Test Logo">
+      </div>
+      <div class="personal-best">
+        <p ><img src="./assets/images/icon-personal-best.svg" alt="Award Icon"> Personal best: <span id="personal-best">0  WPM</span></p>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="test-controls">
+        <div class="test-stats">
+          <div>WPM: <span id="test-wpm">0</span></div>
+          <div>Accuracy: <span id="test-accuracy">0%</span></div>
+          <div>Time: <span id="test-time">60</span>s</div>
+        </div>
+        <div class="test-options">
+          <div>
+            Difficulty:
+            <span id="test-difficulty">
+              <button id="easy-btn" class="difficulty-btn active" >Easy</button>
+              <button id="medium-btn" class="difficulty-btn">Medium</button>
+              <button id="hard-btn" class="difficulty-btn">Hard</button>
+            </span>
+          </div>
+          <div>
+            Mode:
+            <span id="test-mode">
+              <button id="timed-btn" class="mode-btn active">Timed (60s)</button>
+              <button id="passage-btn" class="mode-btn">Passage</button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="test-area-container">
+      <div class="test-passage test-area" id="test-passage">
+        <p id="test-passage-text">Click the text and start typing to begin the test. You can also select a difficulty level and mode before starting.</p>
+      </div>
+        <div class="start-test">
+          <button id="start-btn">Start Typing Test</button>
+          <p>Or click the text and start typing</p>
+      </div>
+      </div>
+      
+      <div class="restart" >
+        <button id="restart-btn">Restart Test    <img src="./assets/images/icon-restart.svg" alt="Restart Icon">  </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-complete-container">
+        <img src="./assets/images/pattern-star-2.svg" alt=" Star Pattern" class="star-pattern-2">
+    <div class="test-complete-text">
+        <img src="./assets/images/icon-completed.svg" alt="Tick Mark Icon">
+        <h2 id="test-complete-title">Test Complete!</h2>
+        <p id="test-complete-message">Solid run. Keep pushing to beat your high score.</p>
+    </div>
+    <div class="test-complete-stats">
+        <div class="test-score">
+            <h3>WPM</h3>
+            <p id="final-wpm">0</p>
+        </div>
+        <div class="test-score">
+            <h3>Accuracy</h3>
+            <p id="final-accuracy">0%</p>
+        </div>
+        <div class="test-score">
+            <h3>Characters</h3>
+            <p id="final-characters">0/0</p>
+        </div>
+    </div>
+    <div class="test-complete-actions">
+        <button id="go-again-btn">Go Again <img src="./assets/images/icon-restart.svg" alt="Restart Icon"></button>
+    </div>
+
+    <img src="./assets/images/pattern-star-1.svg" alt=" Star Pattern" class="star-pattern-1">
+
+    <img src="./assets/images/pattern-confetti.svg" alt=" confetti Pattern" class="confetti-pattern">
+    </div>
+
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+<script src="./script.js"></script>
+</body>
+</html>

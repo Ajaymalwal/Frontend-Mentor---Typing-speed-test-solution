@@ -1,0 +1,343 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.attribution{
+ font-size: 0.6875rem; 
+ text-align: center;
+}
+.attribution a { 
+color: hsl(228, 45%, 44%); 
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: hsl(0, 0%, 7%);
+  color: hsl(229, 25%, 31%);
+}
+.test-container{
+    max-width: 1100px;
+    margin: 1rem auto;
+    padding: 0rem 2rem 0rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.personal-best p{
+    display: flex;
+    font-size: 1.4rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.personal-best span{
+    color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.test-controls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom:1px solid hsl(240, 1%, 59%);
+    padding-bottom: 1rem;
+}
+.test-stats{
+    display: flex;
+    gap: 2rem;
+}
+.test-stats div:not(:first-child){
+    border-left:1px solid hsl(240, 1%, 59%);
+    padding-left: 1rem;
+}
+.test-options{
+    display: flex;
+    gap: 1rem;
+}
+/* Buttons */
+.test-controls button{
+   background-color: transparent;
+   color: whitesmoke;
+    border:1px solid hsl(0, 0%, 96%);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.test-controls button:hover{
+   color: hsl(210, 100%, 65%);
+   border-color: hsl(210, 100%, 65%);
+}
+.test-controls button:active{
+   color: hsl(210, 100%, 65%);
+   border-color: hsl(210, 100%, 65%);
+}
+.test-controls button:disabled{
+   color: hsl(0, 0%, 50%);
+   border-color: hsl(0, 0%, 50%);
+   cursor: not-allowed;
+}
+.test-controls button:disabled:hover{
+   color: hsl(0, 0%, 50%);
+   border-color: hsl(0, 0%, 50%);
+}
+.test-controls button.active{
+    color: hsl(210, 100%, 65%);
+    border-color: hsl(210, 100%, 65%);
+}
+
+/* test area */
+.test-area-container{
+    position: relative;
+    display:inline-block;
+}
+.test-area{
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+/* Restart Button */
+.restart{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    display: none;
+}
+#restart-btn{
+    background-color: hsl(0,0%,15%);
+    color: whitesmoke;
+    padding: 0.5rem 1rem;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+#restart-btn:hover{
+    background-color: hsl(210, 100%, 65%);
+}
+#restart-btn:active{
+    background-color: hsl(210, 100%, 65%);
+}
+#restart-btn:disabled{
+    background-color: hsl(0, 0%, 50%);
+    cursor: not-allowed;
+}
+#restart-btn:disabled:hover{
+    background-color: hsl(0, 0%, 50%);
+}
+#restart-btn img{
+   
+    width: 20px;
+    height: 20px;
+}
+
+/* Start Test */
+.start-test{
+    position: absolute;
+    top:0%;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+    color:hsl(0, 0%, 100%);
+}
+#start-btn{
+    background-color: hsl(214, 100%, 55%);
+    color: hsl(0, 0%, 100%);
+    padding: 0.5rem 1rem;
+    border:none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+#start-btn:hover{
+    background-color: hsl(214, 100%, 65%);
+}
+#start-btn:focus{
+    background-color: hsl(214, 100%, 55%);
+    padding: 0.5rem 1rem;
+    border: 2px solid hsl(0, 0%, 7%);
+    outline:1px solid hsl(214, 100%, 55%);
+}
+#start-btn:active{
+   transform: translateY(1px);
+}
+.start-test:active{
+    opacity: 0.95;
+}
+
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.65; /* Optional visual cue */
+  cursor: not-allowed;
+  
+}   
+   
+
+/*test area text */
+.test-passage{
+    position: relative;
+    z-index: 0;
+    color: whitesmoke;
+}
+
+.test-passage span.correct{
+    color: hsl(140, 63%, 57%);
+}
+.test-passage span.incorrect{
+    color: hsl(354, 63%, 57%);
+}
+
+.test-passage span.active{
+    background: rgba(255,255,255,0.03);
+    box-shadow: inset 0 -2px 0 hsl(210, 100%, 65%);
+}
+
+.test-passage span.active::after{
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background: hsl(0, 0%, 100%);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink{
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+#wpm-chart{
+    display: block;
+    margin-left: 1rem;
+    max-width: 300px;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .test-controls{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .test-stats{
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .test-stats div:not(:first-child){
+        border-left: none;
+        padding-left: 0;
+        border-top:1px solid hsl(240, 1%, 59%);
+        padding-top: 1rem;
+    }
+}
+
+/* Test Complete Modal */
+.test-complete-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+   display: none;
+}
+.test-complete-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.test-complete-text h2{
+    font-size: 2rem;
+    margin-bottom: 0;
+    color: hsl(0, 0%, 100%);
+}
+.test-complete-text p{
+    font-size:1rem;
+    margin-top: 0.5rem;
+    color: hsl(240, 3%, 46%);
+}
+
+.test-complete-stats{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.test-score{
+    font-size: 0.8rem;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid hsl(240, 3%, 46%);
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 5px;
+}
+.test-score p{
+    font-size: 1.17rem;
+    font-weight: bolder;
+}
+
+.test-complete-actions{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.test-complete-actions button{
+    background-color: hsl(0,0%,100%);
+    color: hsl(0, 0%, 7%);
+    padding: 0.5rem 1rem;
+    border:none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.test-complete-actions button:hover{
+    background-color: hsl(210, 100%, 65%);
+    color: hsl(0, 0%, 100%);
+}
+.test-complete-actions button:active{
+    background-color: hsl(210, 100%, 65%);
+    color: hsl(0, 0%, 100%);
+}
+#go-again-btn img{
+    width: 20px;
+    height: 20px;
+    background-color: hsl(0, 0%, 7%);
+    color: hsl(0, 0%, 7%);
+}
+
+.star-pattern-1{
+    position: relative;
+    bottom: 100px;
+    left: 300px;
+    z-index: -1;
+}
+.star-pattern-2{
+    position: relative;
+    right:300px;
+    top: 100px;
+    z-index: -1;
+}
+.confetti-pattern{
+    position: relative;
+    top:0px;
+    width:100vw;
+    box-sizing: border-box;
+    z-index: -1;
+}
