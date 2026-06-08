@@ -41,6 +41,7 @@ const Test_Complete_Title = document.getElementById('test-complete-title');
 const Test_Complete_Message = document.getElementById('test-complete-message');
 const Test_Complete_Stats = document.querySelector('.test-complete-stats');
 const Test_Score = document.querySelector('.test-score');
+const Test_Complete_Icon = document.getElementById('test-complete-icon');
 
 const Final_Wpm = document.getElementById('final-wpm');
 const Final_Accuracy = document.getElementById('final-accuracy');
@@ -242,7 +243,21 @@ function typingTestHandler() {
         Test_Complete_Container.style.display = 'flex';
         Restart_Container.style.display = 'none';
         Main_Content.style.display = 'none';
+        
+        // show confetti if new personal best
+         if (personalBestValue != 0 &&stats.wpm > personalBestValue) {
+            Test_Complete_Icon.src = './assets/images/icon-new-pb.svg';
+            Test_Complete_Title.textContent = 'High Score Smashed!';
+            Test_Complete_Message.textContent = 'You are getting faster! That was incredible typing.';
+            Pattern_Confetti.style.display = 'block';
+         }
+
          // update personal best if needed
+         if(personalBestValue === 0 ) {
+            Test_Complete_Title.textContent = 'Baseline Established!';
+            Test_Complete_Message.textContent = 'You have set the bar. Now real challenge begins-time to beat it.';
+            Pattern_Confetti.style.display = 'none';
+         }
          if (stats.wpm > personalBestValue) {
             personalBestValue = stats.wpm;
             Personal_Best.textContent = 'Personal Best: ' + Math.round(personalBestValue) + ' WPM';
