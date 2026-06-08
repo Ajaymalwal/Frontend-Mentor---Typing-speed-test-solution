@@ -33,20 +33,6 @@ const Start_Test = document.querySelector('.start-test');
 
 const Restart_Btn = document.getElementById('restart-btn');
 
-// Reserve space for the WPM chart to avoid layout shifts when it's added later
-const _controlsEl_placeholder = document.querySelector('.test-controls');
-if (_controlsEl_placeholder) {
-    const _placeholderCanvas = document.createElement('canvas');
-    _placeholderCanvas.id = 'wpm-chart';
-    _placeholderCanvas.width = 600;
-    _placeholderCanvas.height = 160;
-    _placeholderCanvas.style.width = '300px';
-    _placeholderCanvas.style.height = '80px';
-    // keep it invisible but occupying layout space to prevent shifts
-    _placeholderCanvas.style.visibility = 'hidden';
-    _controlsEl_placeholder.appendChild(_placeholderCanvas);
-}
-
 
 // Test completed UI Elements
 const Test_Complete_Container = document.querySelector('.test-complete-container');
@@ -225,7 +211,6 @@ function typingTestHandler() {
         controlsEl.appendChild(canvas);
     }
     const ctx = canvas ? canvas.getContext('2d') : null;
-    if (canvas) canvas.style.visibility = 'visible';
 
     function computeAndUpdateStats() {
         const now = startTimestamp ? Date.now() : null;
