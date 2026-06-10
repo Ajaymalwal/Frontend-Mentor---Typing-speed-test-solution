@@ -15,10 +15,17 @@
   <div class="test-container">
     <div class="header">
       <div>
-        <img src="./assets/images/logo-large.svg" alt="Typing Speed Test Logo">
+        <picture>
+    <source media="(max-width: 768px)" srcset="./assets/images/logo-small.svg">
+    <img src="./assets/images/logo-large.svg" alt="Logo">
+</picture>
       </div>
       <div class="personal-best">
-        <p ><img src="./assets/images/icon-personal-best.svg" alt="Award Icon"> Personal best: <span id="personal-best">0  WPM</span></p>
+        <p >
+          <img src="./assets/images/icon-personal-best.svg" alt="Award Icon">
+          <span class="personal-best-desktop"> Personal best: <span id="personal-best">0  WPM</span></span>
+          <span class="personal-best-mobile">Best: <span id="personal-best-mobile">0  WPM</span></span>
+        </p>
       </div>
     </div>
     <div class="main-content">
@@ -26,9 +33,10 @@
         <div class="test-stats">
           <div>WPM: <span id="test-wpm">0</span></div>
           <div>Accuracy: <span id="test-accuracy">0%</span></div>
-          <div>Time: <span id="test-time">60</span>s</div>
+          <div>Time: <span id="test-time">60s</span></div>
+    
         </div>
-        <div class="test-options">
+        <div class="test-options desktop">
           <div>
             Difficulty:
             <span id="test-difficulty">
@@ -45,8 +53,53 @@
             </span>
           </div>
         </div>
+
+        <div class="mobile-options">
+  <div class="mobile-select">
+      <button class="select-btn">
+    <span class="select-btn-value">Easy</span> <span class="arrow"><img src="./assets/images/icon-down-arrow.svg" alt="Arrow Icon"></span>
+  </button>
+    
+  
+
+  <div class="select-menu">
+    <label>
+      <input type="radio" name="difficulty" value="easy" checked>
+      Easy
+    </label>
+
+    <label>
+      <input type="radio" name="difficulty" value="medium">
+      Medium
+    </label>
+
+    <label>
+      <input type="radio" name="difficulty" value="hard" >
+      Hard
+    </label>
+  </div>
+</div>
+<div class="mobile-select">
+	<button class="select-btn">
+		<span class="select-btn-value">Timed</span></span> <span class="arrow"><img src="./assets/images/icon-down-arrow.svg" alt="Arrow Icon"></span>
+	</button>
+
+	<div class="select-menu">
+		<label>
+			<input type="radio" name="mode" value="timed" checked>
+			Timed (60s)
+		</label>
+
+		<label>
+			<input type="radio" name="mode" value="passage">
+			Passage
+		</label>
+	</div>
+</div>
       </div>
-      <div class="test-area-container">
+      
+    </div>
+    <div class="test-area-container">
       <div class="test-passage test-area" id="test-passage">
         <p id="test-passage-text">Click the text and start typing to begin the test. You can also select a difficulty level and mode before starting.</p>
       </div>
@@ -59,15 +112,17 @@
       <div class="restart" >
         <button id="restart-btn">Restart Test    <img src="./assets/images/icon-restart.svg" alt="Restart Icon">  </button>
       </div>
-    </div>
   </div>
 
   <div class="test-complete-container">
         <img src="./assets/images/pattern-star-2.svg" alt=" Star Pattern" class="star-pattern-2">
     <div class="test-complete-text">
         <img src="./assets/images/icon-completed.svg" alt="Tick Mark Icon" id="test-complete-icon">
-        <h2 id="test-complete-title">Test Complete!</h2>
+        <div class="test-complete-message">
+           <h2 id="test-complete-title">Test Complete!</h2>
         <p id="test-complete-message">Solid run. Keep pushing to beat your high score.</p>
+        </div>
+       
     </div>
     <div class="test-complete-stats">
         <div class="test-score">
@@ -80,7 +135,7 @@
         </div>
         <div class="test-score">
             <h3>Characters</h3>
-            <p id="final-characters">0/0</p>
+            <p id="final-characters"><span id="final-correct-chars">0</span>/<span id="final-wrong-chars">0</span></p>
         </div>
     </div>
     <div class="test-complete-actions">

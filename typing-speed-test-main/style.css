@@ -39,6 +39,9 @@ body {
     color: hsl(0, 0%, 100%);
     border-radius: 5px;
 }
+.personal-best-mobile{
+    display: none;
+}
 .main-content{
     display: flex;
     flex-direction: column;
@@ -59,6 +62,10 @@ body {
 .test-stats div:not(:first-child){
     border-left:1px solid hsl(240, 1%, 59%);
     padding-left: 1rem;
+}
+.test-stats span{
+    color: hsl(0, 0%, 100%);
+    font-size: 1.2rem;
 }
 .test-options{
     display: flex;
@@ -230,23 +237,14 @@ body {
     margin-left: 1rem;
     max-width: 300px;
 }
-/* Responsive Design */
-@media (max-width: 768px) {
-    .test-controls{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .test-stats{
-        flex-direction: column;
-        gap: 1rem;
-    }
-    .test-stats div:not(:first-child){
-        border-left: none;
-        padding-left: 0;
-        border-top:1px solid hsl(240, 1%, 59%);
-        padding-top: 1rem;
-    }
+
+.mobile{
+    display: none;
 }
+.mobile-options{
+    display: none;
+}
+
 
 /* Test Complete Modal */
 .test-complete-container{
@@ -255,14 +253,21 @@ body {
     gap: 1.2rem;
     align-items: center;
    display: none;
+   overflow: hidden;
 }
 .test-complete-text{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap:1rem;
+}
+.test-complete-message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .test-complete-text h2{
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
     margin-bottom: 0;
     color: hsl(0, 0%, 100%);
 }
@@ -336,8 +341,102 @@ body {
 }
 .confetti-pattern{
     position: relative;
-    top:0px;
-    width:100vw;
+    bottom: 300px;
     box-sizing: border-box;
     z-index: -1;
+}
+
+.mobile-select {
+  position: relative;
+  width: 130px;
+}
+
+.select-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.select-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background: #222;
+  border-radius: 8px;
+  display: none;
+  overflow: hidden;
+  z-index: 10;
+  color: white;
+}
+
+.select-menu label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  cursor: pointer;
+}
+
+.select-menu label:hover {
+  background: #333;
+}
+
+.mobile-select.active .select-menu {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: inline;
+    }
+    .mobile-options{
+        display:flex;
+        gap: 1rem;
+    }
+    .test-stats div{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .personal-best-desktop{
+        display: none;
+    }
+    .personal-best-mobile{
+        display: inline;
+    }
+    .test-controls{
+        flex-direction: column;
+    }
+    .test-complete-stats{
+        flex-direction: column;
+        align-items: center;
+        width: -webkit-fill-available;
+    }
+    .star-pattern-2{
+        position: relative;
+        right:150px;
+        top: 50px;
+        z-index: -1;
+    }
+    .star-pattern-1{
+        position: relative;
+        width:30px;
+        bottom: 50px;
+        left: 150px;
+        z-index: -1;
+    }
+    .test-score{
+        width:100%;
+    }
+   
 }

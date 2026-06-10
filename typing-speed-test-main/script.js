@@ -1,7 +1,47 @@
+//Responsive Design
+const Mobile_Select_Btn = document.querySelectorAll('.select-btn');
+const Mobile_Select_Menu = document.querySelectorAll('.select-menu');
+const Mobile_Select_Value = document.querySelectorAll('.select-btn-value');
+
+Mobile_Select_Btn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const menu = btn.nextElementSibling;
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !btn.nextElementSibling.contains(e.target)) {
+            btn.nextElementSibling.style.display = 'none';
+        }
+    });
+});
+
+Mobile_Select_Menu.forEach(menu => {
+    menu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'LABEL') {
+            const radio = e.target.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                // Trigger the same logic as desktop selection
+                const value = radio.value;
+                if (value === 'easy' || value === 'medium' || value === 'hard') {
+                    Mobile_Select_Value[0].textContent = e.target.textContent; // Update button text to selected difficulty
+                    chooseDifficulty(value);
+
+                } else if (value === 'timed' || value === 'passage') {
+                    chooseMode(value);
+                        Mobile_Select_Value[1].textContent = e.target.textContent; // Update button text to selected mode
+                }
+
+            }
+        }
+    });
+});
+
 // Test not started UI Elements
 const mainContentc = document.querySelector('.main-content');
 
 const Personal_Best = document.getElementById('personal-best');
+const Personal_Best_Mobile = document.getElementById('personal-best-mobile');
 let personalBestValue = 0;
 
 const Main_Content = document.querySelector('.main-content');
@@ -45,7 +85,8 @@ const Test_Complete_Icon = document.getElementById('test-complete-icon');
 
 const Final_Wpm = document.getElementById('final-wpm');
 const Final_Accuracy = document.getElementById('final-accuracy');
-const Final_Characters = document.getElementById('final-characters');
+const Final_Correct_Chars = document.getElementById('final-correct-chars');
+const Final_Wrong_Chars = document.getElementById('final-wrong-chars');
 
 let finalWpmValue = 0;
 let finalAccuracyValue = 0;
@@ -111,7 +152,7 @@ function StartButtonHandler() {
     if (modeValue === 'timed') {
         Mode_Passage.classList.add('disabled-button');
         Mode_Passage.removeEventListener('click', () => chooseMode('passage'));
-        Test_Time.textContent = testTimeValue;
+        Test_Time.textContent = testTimeValue+'s';
     }
 
     if(modeValue === 'passage') {
@@ -239,7 +280,8 @@ function typingTestHandler() {
         Final_Wpm.textContent = Math.round(stats.wpm);
         Final_Accuracy.textContent = Math.round(stats.accuracy) + '%';
         Test_Time.textContent = 'Done';
-        Final_Characters.textContent = `${correctChars}/${spans.length}`;
+        Final_Correct_Chars.textContent = correctChars;
+        Final_Wrong_Chars.textContent = spans.length - correctChars;
         Test_Complete_Container.style.display = 'flex';
         Restart_Container.style.display = 'none';
         Main_Content.style.display = 'none';
@@ -260,14 +302,35 @@ function typingTestHandler() {
          }
          if (stats.wpm > personalBestValue) {
             personalBestValue = stats.wpm;
-            Personal_Best.textContent = 'Personal Best: ' + Math.round(personalBestValue) + ' WPM';
+            Personal_Best.textContent = Math.round(personalBestValue);
+            Personal_Best_Mobile.textContent = Math.round(personalBestValue);
         }
+
+        //Update the test complete stats value color based on performance
+        if (stats.wpm >= 60) {
+            Final_Wpm.style.color = '#4CAF50'; // green for excellent  
+        } else if (stats.wpm >= 40) {
+            Final_Wpm.style.color = '#FFC107'; // amber for good
+        } else {
+            Final_Wpm.style.color = '#F44336'; // red for needs improvement
+        }
+
+        if(stats.accuracy >= 95) {
+            Final_Accuracy.style.color = '#4CAF50'; // green for excellent
+        } else if (stats.accuracy >= 80) {
+            Final_Accuracy.style.color = '#FFC107'; // amber for good
+        } else {
+            Final_Accuracy.style.color = '#F44336'; // red for needs improvement
+        }
+
+        Final_Correct_Chars.style.color = '#4CAF50'; // green for correct chars
+        Final_Wrong_Chars.style.color = '#F44336'; // red for wrong chars
     }
 
     function decrementCounter() {
         if (testTimeValue > 0) {
             testTimeValue--;
-            Test_Time.textContent = testTimeValue;
+            Test_Time.textContent = testTimeValue+'s';
         } else {
             Test_Time.textContent = 'Done';
             endTest();
@@ -283,12 +346,13 @@ function typingTestHandler() {
             startedTyping = true;
             startTimestamp = Date.now();
             if (modeValue === 'timed') {
-                Test_Time.textContent = testTimeValue;
+                Test_Time.textContent = testTimeValue+'s';
                 counterInterval = setInterval(decrementCounter, 1000);
             } else {
                 Test_Time.textContent = '∞';
             }
             // start chart updates
+            /* Chart is for future version, currently disabled to focus on core functionality and avoid potential performance issues on lower-end devices. Will re-enable once optimized.
             if (!chartInterval && ctx) {
                 chartInterval = setInterval(() => {
                     const stats = computeAndUpdateStats();
@@ -324,6 +388,7 @@ function typingTestHandler() {
                     }
                 }, 1000);
             }
+            */
         }
 
         if (key === 'Backspace') {
@@ -387,7 +452,7 @@ function resetTest() {
     finalWrongCharactersValue = 0; 
     Test_Wpm.textContent = '0';
     Test_Accuracy.textContent = '0%';
-    Test_Time.textContent = '60';
+    Test_Time.textContent = '60s';
     Test_Passage.style.display = '';
     Start_Test.style.display = 'flex';
     Test_Complete_Container.style.display = 'none';
@@ -412,5 +477,7 @@ function resetTest() {
 
 Restart_Btn.addEventListener('click', resetTest);
 Go_Again_Btn.addEventListener('click', resetTest);
+
+
 
 
