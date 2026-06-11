@@ -12,7 +12,6 @@ This is a solution to the [Typing Speed Test challenge on Frontend Mentor](https
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
