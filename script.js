@@ -42,7 +42,12 @@ const mainContentc = document.querySelector('.main-content');
 
 const Personal_Best = document.getElementById('personal-best');
 const Personal_Best_Mobile = document.getElementById('personal-best-mobile');
-let personalBestValue = 0;
+
+// Load personal best from localStorage if available
+
+let personalBestValue = Number(localStorage.getItem('personalBest')) || 0;
+Personal_Best.textContent = personalBestValue ? Math.round(personalBestValue) : '0';
+Personal_Best_Mobile.textContent = personalBestValue ? Math.round(personalBestValue) : '0';
 
 const Main_Content = document.querySelector('.main-content');
 
@@ -263,7 +268,7 @@ function typingTestHandler() {
         const now = startTimestamp ? Date.now() : null;
         const minutesElapsed = startTimestamp ? Math.max((now - startTimestamp) / 60000, 1/60) : 0; // avoid div by zero
         const wpmRaw = minutesElapsed ? (correctChars / 5) / minutesElapsed : 0;
-        const accuracy = typedChars ? (correctChars / typedChars) * 100 : 0;
+        const accuracy = typedChars ? Math.min(100, (correctChars / typedChars) * 100) : 0;
         Test_Wpm.textContent = Math.round(wpmRaw);
         Test_Accuracy.textContent = Math.round(accuracy) + '%';
         return { wpm: wpmRaw, accuracy: accuracy };
@@ -304,6 +309,7 @@ function typingTestHandler() {
             personalBestValue = stats.wpm;
             Personal_Best.textContent = Math.round(personalBestValue);
             Personal_Best_Mobile.textContent = Math.round(personalBestValue);
+            localStorage.setItem('personalBest', personalBestValue);
         }
 
         //Update the test complete stats value color based on performance
