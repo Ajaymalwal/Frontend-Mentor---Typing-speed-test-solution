@@ -29,8 +29,9 @@ color: hsl(228, 45%, 44%);
 }
 body {
   font-family: 'Sora', sans-serif;
+color: hsl(229, 25%, 31%);
   background-color: var(--Neutral900);
-  color: hsl(229, 25%, 31%);
+
 }
 .test-container{
     max-width: 100em;
@@ -54,7 +55,7 @@ body {
 }
 .personal-best span{
     color: var(--Neutral0);
-    border-radius: 5px;
+    border-radius: 0.3125rem;
 }
 .personal-best-mobile{
     display: none;
@@ -69,7 +70,7 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border-bottom:1px solid var(--Neutral400);
+    border-bottom: 0.0625rem solid var(--Neutral400);
     padding-bottom: 1rem;
 }
 .test-stats{
@@ -77,7 +78,7 @@ body {
     gap: 2rem;
 }
 .test-stats div:not(:first-child){
-    border-left:1px solid var(--Neutral400);
+    border-left: 0.0625rem solid var(--Neutral400);
     padding-left: 1rem;
 }
 .test-stats span{
@@ -90,11 +91,11 @@ body {
 }
 /* Buttons */
 .test-controls button{
+    color: var(--Neutral0);
    background-color: transparent;
-   color: whitesmoke;
-    border:1px solid hsl(0, 0%, 96%);
+    border: 0.0625rem solid hsl(0, 0%, 96%);
     padding: 0.5rem 1rem;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     cursor: pointer;
 }
 .test-controls button:hover{
@@ -131,11 +132,12 @@ body {
     display: none;
 }
 .restart-btn{
+    color: var(--Neutral0);
     background-color: hsl(0,0%,15%);
-    color: whitesmoke;
+
     padding: 0.5rem 1rem;
     border:none;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     cursor: pointer;
     font-size: 1.2rem;
     display: flex;
@@ -154,8 +156,8 @@ body {
 }
 .restart-btn img{
    
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 /* Start Test */
@@ -171,28 +173,29 @@ body {
     justify-content: center;
     color: var(--Neutral0);
     z-index: 1;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(0.25rem);
 }
-#start-btn{
-    background-color: var(--Blue600);
+.start-btn{
     color: var(--Neutral0);
+    background-color: var(--Blue600);
+
     padding: 0.5rem 1rem;
     border:none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
     font-size: 1.2rem;
 }
-#start-btn:hover{
+.start-btn:hover{
     background-color: hsl(214, 100%, 65%);
 }
-#start-btn:focus{
+.start-btn:focus{
     background-color: var(--Blue600);
     padding: 0.5rem 1rem;
-    border: 2px solid var(--Neutral900);
-    outline:1px solid var(--Blue600);
+    border: 0.125rem solid var(--Neutral900);
+    outline: 0.0625rem solid var(--Blue600);
 }
-#start-btn:active{
-   transform: translateY(1px);
+.start-btn:active{
+   transform: translateY(0.0625rem);
 }
 .start-test:active{
     opacity: 0.95;
@@ -224,16 +227,16 @@ body {
 
 .test-passage span.active{
     background: rgba(255,255,255,0.03);
-    box-shadow: inset 0 -2px 0 var(--Blue400);
+    box-shadow: inset 0 -0.125rem 0 var(--Blue400);
 }
 
 .test-passage span.active::after{
     content: '';
     display: inline-block;
-    width: 1px;
+    width: 0.0625rem;
     height: 1em;
     background: var(--Neutral0);
-    margin-left: 2px;
+    margin-left: 0.125rem;
     vertical-align: middle;
     animation: blink 1s steps(2, start) infinite;
 }
@@ -248,10 +251,10 @@ body {
     }
 }
 
-#wpm-chart{
+.wpm-chart{
     display: block;
     margin-left: 1rem;
-    max-width: 300px;
+    max-width: 18.75rem;
 }
 
 .mobile{
@@ -264,7 +267,6 @@ body {
 
 /* Test Complete Modal */
 .test-complete-container{
-    display: flex;
     flex-direction: column;
     gap: 1.2rem;
     align-items: center;
@@ -301,13 +303,13 @@ body {
 }
 .test-score{
     font-size: 0.8rem;
-    width: 100px;
+    width: 6.25rem;
     display: flex;
     flex-direction: column;
-    border: 0.5px solid var(--Neutral500);
+    border: 0.03125rem solid var(--Neutral500);
     gap: 0.5rem;
     padding: 0.8rem;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
 }
 .test-score p{
     font-size: 1.17rem;
@@ -321,73 +323,78 @@ body {
 }
 .test-complete-actions button{
     color: var(--Neutral900);
-    background-color: hsl(0,0%,100%);
+    background-color: var(--Neutral0);
+
     padding: 0.5rem 1rem;
     border:none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
     font-size: 1.2rem;
 }
 .test-complete-actions button:hover{
-    background-color: var(--Blue400);
     color: var(--Neutral0);
+    background-color: var(--Blue400);
 }
 .test-complete-actions button:active{
-    background-color: var(--Blue400);
     color: var(--Neutral0);
+    background-color: var(--Blue400);
+    
 }
-#go-again-btn img{
-    width: 20px;
-    height: 20px;
-    background-color: var(--Neutral900);
+.go-again-btn img{
+    width: 1.25rem;
+    height: 1.25rem;
     color: var(--Neutral900);
+    background-color: var(--Neutral900);
+    
 }
 
 .star-pattern-1{
     position: relative;
-    bottom: 100px;
-    left: 300px;
+    bottom: 6.25rem;
+    left: 18.75rem;
     z-index: -1;
 }
 .star-pattern-2{
     position: relative;
-    right:300px;
-    top: 100px;
+    right: 18.75rem;
+    top: 6.25rem;
     z-index: -1;
 }
 .confetti-pattern{
     position: relative;
-    bottom: 300px;
+    bottom: 18.75rem;
     box-sizing: border-box;
     z-index: -1;
 }
 
 .mobile-select {
   position: relative;
-  width: 130px;
+  width: 8.125rem;
 }
 
 .select-btn {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #444;
-  border-radius: 8px;
-  background: transparent;
+  border: 0.0625rem solid #444;
+  border-radius: 0.5rem;
   color: white;
+  background: transparent;
+  
   cursor: pointer;
 }
 
 .select-menu {
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 0.3125rem);
   left: 0;
   width: 100%;
+  color: var(--Neutral0);
   background: #222;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: none;
   overflow: hidden;
   z-index: 10;
-  color: white;
+  
 }
 
 .select-menu label {
@@ -440,15 +447,15 @@ body {
     }
     .star-pattern-2{
         position: relative;
-        right:150px;
-        top: 50px;
+        right: 9.375rem;
+        top: 3.125rem;
         z-index: -1;
     }
     .star-pattern-1{
         position: relative;
-        width:30px;
-        bottom: 50px;
-        left: 150px;
+        width: 1.875rem;
+        bottom: 3.125rem;
+        left: 9.375rem;
         z-index: -1;
     }
     .test-score{
@@ -459,10 +466,10 @@ body {
 /* Accessibility helpers */
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

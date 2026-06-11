@@ -54,7 +54,6 @@ const Test_Wpm = document.getElementById('test-wpm');
 const Test_Accuracy = document.getElementById('test-accuracy');
 const Test_Time = document.getElementById('test-time');
 
-let testWpmValue = 0;
 let testAccuracyValue = 0;
 let testTimeValue = 60;
 
@@ -254,6 +253,9 @@ function typingTestHandler() {
     if (!canvas && controlsEl) {
         canvas = document.createElement('canvas');
         canvas.id = 'wpm-chart';
+        canvas.setAttribute('aria-label', 'Real-time WPM chart');
+        canvas.setAttribute('role', 'img');
+        canvas.classList.add('wpm-chart');
         // logical size for crisp drawing
         canvas.width = 600;
         canvas.height = 160;
