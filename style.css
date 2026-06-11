@@ -214,7 +214,6 @@ color: hsl(229, 25%, 31%);
     position: relative;
     z-index: 0;
     color: whitesmoke;
-    height: 6em;
     overflow: hidden;
 }
 
