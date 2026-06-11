@@ -1,3 +1,19 @@
+:root{
+    --Neutral900: hsl(0, 0%, 7%);
+    --Neutral800: hsl(0, 0%, 15%);
+    --Neutral500: hsl(240, 3%, 46%);
+    --Neutral400: hsl(240, 1%, 59%);
+    --Neutral0: hsl(0, 0%, 100%);
+
+    --Blue600: hsl(214, 100%, 55%);
+    --Blue400: hsl(210, 100%, 65%);
+
+    --Red500: hsl(354, 63%, 57%);
+
+    --Green500: hsl(140, 63%, 57%);
+
+    --Yellow400: hsl(49, 85%, 70%);
+}
 *{
     margin: 0;
     padding: 0;
@@ -13,11 +29,11 @@ color: hsl(228, 45%, 44%);
 }
 body {
   font-family: 'Sora', sans-serif;
-  background-color: hsl(0, 0%, 7%);
+  background-color: var(--Neutral900);
   color: hsl(229, 25%, 31%);
 }
 .test-container{
-    max-width: 1100px;
+    max-width: 100em;
     margin: 1rem auto;
     padding: 0rem 2rem 0rem 2rem;
     display: flex;
@@ -37,7 +53,7 @@ body {
     gap: 0.5rem;
 }
 .personal-best span{
-    color: hsl(0, 0%, 100%);
+    color: var(--Neutral0);
     border-radius: 5px;
 }
 .personal-best-mobile{
@@ -53,7 +69,7 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border-bottom:1px solid hsl(240, 1%, 59%);
+    border-bottom:1px solid var(--Neutral400);
     padding-bottom: 1rem;
 }
 .test-stats{
@@ -61,11 +77,11 @@ body {
     gap: 2rem;
 }
 .test-stats div:not(:first-child){
-    border-left:1px solid hsl(240, 1%, 59%);
+    border-left:1px solid var(--Neutral400);
     padding-left: 1rem;
 }
 .test-stats span{
-    color: hsl(0, 0%, 100%);
+    color: var(--Neutral0);
     font-size: 1.2rem;
 }
 .test-options{
@@ -82,25 +98,21 @@ body {
     cursor: pointer;
 }
 .test-controls button:hover{
-   color: hsl(210, 100%, 65%);
-   border-color: hsl(210, 100%, 65%);
+   color: var(--Blue400);
+   border-color: var(--Blue400);
 }
 .test-controls button:active{
-   color: hsl(210, 100%, 65%);
-   border-color: hsl(210, 100%, 65%);
+   color: var(--Blue400);
+   border-color: var(--Blue400);
 }
 .test-controls button:disabled{
    color: hsl(0, 0%, 50%);
    border-color: hsl(0, 0%, 50%);
    cursor: not-allowed;
 }
-.test-controls button:disabled:hover{
-   color: hsl(0, 0%, 50%);
-   border-color: hsl(0, 0%, 50%);
-}
 .test-controls button.active{
-    color: hsl(210, 100%, 65%);
-    border-color: hsl(210, 100%, 65%);
+    color: var(--Blue400);
+    border-color: var(--Blue400);
 }
 
 /* test area */
@@ -114,12 +126,11 @@ body {
 }
 /* Restart Button */
 .restart{
-    display: flex;
     justify-content: center;
     margin-top: 2rem;
     display: none;
 }
-#restart-btn{
+.restart-btn{
     background-color: hsl(0,0%,15%);
     color: whitesmoke;
     padding: 0.5rem 1rem;
@@ -131,20 +142,17 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
-#restart-btn:hover{
-    background-color: hsl(210, 100%, 65%);
+.restart-btn:hover{
+    background-color: var(--Blue400);
 }
-#restart-btn:active{
-    background-color: hsl(210, 100%, 65%);
+.restart-btn:active{
+    background-color: var(--Blue400);
 }
-#restart-btn:disabled{
+.restart-btn:disabled{
     background-color: hsl(0, 0%, 50%);
     cursor: not-allowed;
 }
-#restart-btn:disabled:hover{
-    background-color: hsl(0, 0%, 50%);
-}
-#restart-btn img{
+.restart-btn img{
    
     width: 20px;
     height: 20px;
@@ -161,13 +169,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: var(--Neutral0);
     z-index: 1;
     backdrop-filter: blur(4px);
-    color:hsl(0, 0%, 100%);
 }
 #start-btn{
-    background-color: hsl(214, 100%, 55%);
-    color: hsl(0, 0%, 100%);
+    background-color: var(--Blue600);
+    color: var(--Neutral0);
     padding: 0.5rem 1rem;
     border:none;
     border-radius: 8px;
@@ -178,10 +186,10 @@ body {
     background-color: hsl(214, 100%, 65%);
 }
 #start-btn:focus{
-    background-color: hsl(214, 100%, 55%);
+    background-color: var(--Blue600);
     padding: 0.5rem 1rem;
-    border: 2px solid hsl(0, 0%, 7%);
-    outline:1px solid hsl(214, 100%, 55%);
+    border: 2px solid var(--Neutral900);
+    outline:1px solid var(--Blue600);
 }
 #start-btn:active{
    transform: translateY(1px);
@@ -203,18 +211,20 @@ body {
     position: relative;
     z-index: 0;
     color: whitesmoke;
+    height: 6em;
+    overflow: hidden;
 }
 
 .test-passage span.correct{
-    color: hsl(140, 63%, 57%);
+    color: var(--Green500);
 }
 .test-passage span.incorrect{
-    color: hsl(354, 63%, 57%);
+    color: var(--Red500);
 }
 
 .test-passage span.active{
     background: rgba(255,255,255,0.03);
-    box-shadow: inset 0 -2px 0 hsl(210, 100%, 65%);
+    box-shadow: inset 0 -2px 0 var(--Blue400);
 }
 
 .test-passage span.active::after{
@@ -222,7 +232,7 @@ body {
     display: inline-block;
     width: 1px;
     height: 1em;
-    background: hsl(0, 0%, 100%);
+    background: var(--Neutral0);
     margin-left: 2px;
     vertical-align: middle;
     animation: blink 1s steps(2, start) infinite;
@@ -231,6 +241,11 @@ body {
 @keyframes blink{
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
+}
+@media(prefers-reduced-motion: reduce){
+    .test-passage span.active::after{
+        animation: none;
+    }
 }
 
 #wpm-chart{
@@ -270,12 +285,12 @@ body {
 .test-complete-text h2{
     font-size: clamp(1.5rem, 2vw, 2.5rem);
     margin-bottom: 0;
-    color: hsl(0, 0%, 100%);
+    color: var(--Neutral0);
 }
 .test-complete-text p{
     font-size:1rem;
     margin-top: 0.5rem;
-    color: hsl(240, 3%, 46%);
+    color: var(--Neutral500);
 }
 
 .test-complete-stats{
@@ -289,7 +304,7 @@ body {
     width: 100px;
     display: flex;
     flex-direction: column;
-    border: 0.5px solid hsl(240, 3%, 46%);
+    border: 0.5px solid var(--Neutral500);
     gap: 0.5rem;
     padding: 0.8rem;
     border-radius: 5px;
@@ -305,8 +320,8 @@ body {
     margin-top: 1rem;
 }
 .test-complete-actions button{
+    color: var(--Neutral900);
     background-color: hsl(0,0%,100%);
-    color: hsl(0, 0%, 7%);
     padding: 0.5rem 1rem;
     border:none;
     border-radius: 8px;
@@ -314,18 +329,18 @@ body {
     font-size: 1.2rem;
 }
 .test-complete-actions button:hover{
-    background-color: hsl(210, 100%, 65%);
-    color: hsl(0, 0%, 100%);
+    background-color: var(--Blue400);
+    color: var(--Neutral0);
 }
 .test-complete-actions button:active{
-    background-color: hsl(210, 100%, 65%);
-    color: hsl(0, 0%, 100%);
+    background-color: var(--Blue400);
+    color: var(--Neutral0);
 }
 #go-again-btn img{
     width: 20px;
     height: 20px;
-    background-color: hsl(0, 0%, 7%);
-    color: hsl(0, 0%, 7%);
+    background-color: var(--Neutral900);
+    color: var(--Neutral900);
 }
 
 .star-pattern-1{
@@ -392,7 +407,7 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .desktop{
         display: none;
     }
@@ -440,4 +455,16 @@ body {
         width:100%;
     }
    
+}
+/* Accessibility helpers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

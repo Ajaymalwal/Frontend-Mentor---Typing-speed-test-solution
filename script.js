@@ -38,7 +38,6 @@ Mobile_Select_Menu.forEach(menu => {
 });
 
 // Test not started UI Elements
-const mainContentc = document.querySelector('.main-content');
 
 const Personal_Best = document.getElementById('personal-best');
 const Personal_Best_Mobile = document.getElementById('personal-best-mobile');
@@ -292,7 +291,7 @@ function typingTestHandler() {
         Main_Content.style.display = 'none';
         
         // show confetti if new personal best
-         if (personalBestValue != 0 &&stats.wpm > personalBestValue) {
+         if (personalBestValue !== 0 &&stats.wpm > personalBestValue) {
             Test_Complete_Icon.src = './assets/images/icon-new-pb.svg';
             Test_Complete_Title.textContent = 'High Score Smashed!';
             Test_Complete_Message.textContent = 'You are getting faster! That was incredible typing.';
