@@ -33,7 +33,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github Repo](https://github.com/Ajaymalwal/Frontend-Mentor---Typing-speed-test-solution)
-- Live Site URL: [Live](https://your-live-site-url.com)
+- Live Site URL: [Live](https://ajaymalwal.github.io/Frontend-Mentor---Typing-speed-test-solution/)
 
 ## My process
 
