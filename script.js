@@ -54,6 +54,7 @@ const Test_Wpm = document.getElementById('test-wpm');
 const Test_Accuracy = document.getElementById('test-accuracy');
 const Test_Time = document.getElementById('test-time');
 
+let testWpmValue = 0;
 let testAccuracyValue = 0;
 let testTimeValue = 60;
 
